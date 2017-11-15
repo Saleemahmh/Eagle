@@ -29,7 +29,7 @@ public class HomeController {
     private ServiceI serviceI;
 
 
-    // Route Controller
+    // Home Controller
 
 		/*
 		 * @GetMapping--specifies GET method
@@ -38,7 +38,7 @@ public class HomeController {
 		 * @DeleteMapping--specifies DELETE method
 		 */
 
-    @GetMapping("/getStudentpdbyID/{id}")   //sample endpoint---- localhost:8080/rest/bus/route/{id}
+    @GetMapping("/getStudentpdbyID/{id}")   //sample endpoint---- localhost:8090/rest/eagle/getStudentpdbyID/{id}
     public ResponseEntity<StudentPD> getStudentPDById(@PathVariable("id") String id) {
         StudentPD studentpd = serviceI.getStudentPDById(id);
         return new ResponseEntity<StudentPD>(studentpd, HttpStatus.OK);
@@ -78,7 +78,7 @@ public class HomeController {
 
     //Student Syllabus Details Controller
 
-    @GetMapping("/getStudentsdbyID/{id}")   //sample endpoint---- localhost:8080/rest/bus/route/{id}
+    @GetMapping("/getStudentsdbyID/{id}")   //sample endpoint---- localhost:8090/rest/eagle/getStudentsdbyID/{id}
     public ResponseEntity<StudentSD> getStudentSDById(@PathVariable("id") String id) {
         StudentSD studentsd = serviceI.getStudentSDById(id);
         return new ResponseEntity<StudentSD>(studentsd, HttpStatus.OK);
@@ -117,19 +117,19 @@ public class HomeController {
 
     //Image Upload controller
 
-    @GetMapping("/student")// Sample: localhost:8080/rest/studentimage
+    @GetMapping("/student")// Sample: localhost:8090/rest/eagle/student
     public String getStudentImages() {
         String folders = serviceI.getStudentImages();
         return folders;
     }
 
-    @GetMapping("/student/{studentId}") //Sample: localhost:8080/rest/city/Guindy
+    @GetMapping("/student/{studentId}") //Sample: localhost:8090/rest/eagle/student/1
     public List<ImageUrl> getStudent(@PathVariable("studentId") String studentId, HttpServletRequest request) {
         List<ImageUrl> studentimages = serviceI.getStudentImageUrl(studentId, request);
         return studentimages;
     }
 
-    @GetMapping(value = "/student/{studentId}/{image}")
+    @GetMapping(value = "/student/{studentId}/{image}")//Sample: localhost:8090/rest/eagle/student/1/madras.jpg
     public byte[] getImage(@PathVariable("studentId") String studentId, @PathVariable("image") String image)
             throws IOException {
         byte[] images = serviceI.getImage(studentId, image);
